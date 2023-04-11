@@ -1,0 +1,42 @@
+Emp - Name, Age, Designation, mail, mobile, skill(Dropdown), years of exp, high degree, mode of work, location
+
+Company - Name, Location, culture(1-5), opportunities(1-5), reviews(1-5), salary/hike(1-5), management/hierarchy(1-5), reviews
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.8/xlsx.full.min.js"></script>
+
+
+<form>
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name"><br><br>
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email"><br><br>
+  <label for="phone">Phone:</label>
+  <input type="tel" id="phone" name="phone"><br><br>
+  <button type="button" onclick="exportToExcel()">Export to Excel</button>
+</form>
+
+
+function exportToExcel() {
+  // Get form data
+  var formData = new FormData(document.forms[0]);
+
+  // Create workbook
+  var workbook = XLSX.utils.book_new();
+
+  // Create worksheet
+  var worksheet = XLSX.utils.json_to_sheet([formDataToObject(formData)]);
+
+  // Add worksheet to workbook
+  XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
+
+  // Export workbook to Excel file
+  XLSX.writeFile(workbook, 'data.xlsx');
+}
+
+function formDataToObject(formData) {
+  var obj = {};
+  for (var key of formData.keys()) {
+    obj[key] = formData.get(key);
+  }
+  return obj;
+}

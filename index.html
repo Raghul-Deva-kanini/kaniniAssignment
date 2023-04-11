@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Signup Form in HTML and CSS3</title>
+    <!-- <script src="./script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.8/xlsx.full.min.js"></script> -->
+  </head>
+  <body>
+  
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-6 vh-100 bg-danger">
+      <h1 class="text-light"><Center>Employee Details</Center></h1>
+      <h2 id="msg1"></h2>
+      <form class="f1">
+        
+        <div class="mb-3">
+          <input type="text" class="form-control" name="name" placeholder="name">
+        </div>
+
+        <div class="mb-3">
+          <input type="text" class="form-control" name="age" placeholder="age">
+        </div>
+
+        <div class="mb-3">
+          <input type="text" class="form-control" name="designation" placeholder="Designation">
+        </div>
+
+        <div class="mb-3">
+          <input type="email" class="form-control" name="email" placeholder="Email">
+        </div>
+
+        <div class="mb-3">
+          <input type="number" class="form-control" name="mobile" placeholder="Mobile">
+        </div>
+
+        <div class="mb-3">
+          <input type="text" class="form-control" name="skill" placeholder="skill">
+        </div>
+
+        <div class="mb-3">
+          <input type="number" class="form-control" name="years_of_exp" placeholder="years of experience">
+        </div>
+
+        <div class="mb-3">
+          <input type="text" class="form-control" name="high_degree" placeholder="Highest Degree">
+        </div>
+
+        <div class="mb-3">
+          <input type="text" class="form-control" name="mode_of_work" placeholder="Mode of work">
+        </div>
+
+        <div class="mb-3">
+          <input type="text" class="form-control" name="location" placeholder="location">
+        </div>
+        
+        <button type="submit" class="btn btn-primary" id="sub1">Submit</button>
+      </form>
+    </div>
+    <div class="col-lg-6 vh-100 bg-primary">
+      <h1 class="text-light"><Center>Company Details</Center></h1>
+      <h2 id="msg2"></h2>
+      <form class="f2">
+        <div class="mb-3">
+          <input type="text" class="form-control" name="cname" placeholder="Company Name">
+        </div>
+
+        <div class="mb-3">
+          <input type="text" class="form-control" name="clocation" placeholder="Company Location">
+        </div>
+
+        <div class="mb-3">
+          <input type="text" class="form-control" name="culture" placeholder="culture">
+        </div>
+
+        <div class="mb-3">
+          <input type="text" class="form-control" name="opportunities" placeholder="opportunities">
+        </div>
+
+        <div class="mb-3">
+          <input type="number" class="form-control" name="reviews" placeholder="reviews">
+        </div>
+
+        <div class="mb-3">
+          <input type="number" class="form-control" name="salary" placeholder="salary">
+        </div>
+
+        <div class="mb-3">
+          <input type="number" class="form-control" name="management" placeholder="management">
+        </div>
+
+        
+        <button type="submit" class="btn btn-danger" id="sub2">Submit</button>
+      </form>
+      </script>
+    </div>
+  </div>
+</div>
+
+<script>
+  
+  // var forms = document.querySelectorAll('form');
+  // let form = document.querySelector('form[data-form="form-1"]');
+  
+  let form1 = document.querySelector('form.f1');
+  form1.addEventListener('submit', (e)=>{
+  e.preventDefault();
+  document.querySelector("#sub1").value="Submitting..";
+
+  // var data = new FormData(forms);
+  let data1 = new FormData(form1);
+  fetch('https://script.google.com/macros/s/AKfycby5IJGuou_3ICj1DTiNpI-O9ZdxhX2bNlPgHcqYBpy0XIfCGBI6JZGYu0vm0NWdJGwjTQ/exec', {
+  method:"POST",
+  body:data1
+  })
+  .then(res => res.text())
+  .then(data1 =>{
+  document.querySelector("#msg1").innerHTML=data1;
+  document.querySelector("#sub1").value="Submit"
+  });
+  })
+
+  let form2 = document.querySelector('form.f2');
+  form2.addEventListener('submit', (f)=>
+  {
+    f.preventDefault();
+    document.querySelector("#sub2").value="Submitting..";
+
+    let data2 = new FormData(form2);
+    fetch('https://script.google.com/macros/s/AKfycbyrCeLK2_UmdmebpFR3DKGUphHZRiYj_ZSmO0-Jkr7n6APmdzhzhL-dxoPHU7t93D-MNw/exec', {
+    method:"POST",
+    body:data2
+    })
+    .then(res2=>res2.text())
+    .then(data2 =>{
+      document.querySelector("#msg2").innerHTML=data2;
+      document.querySelector("#sub2").value="Submit"
+    })
+  })
+
+
+</script>
+
+
+  </body>
+</html>
